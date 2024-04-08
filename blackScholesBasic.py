@@ -55,11 +55,12 @@ def black_scholes_put(S, K, T, r, sigma):
     return put_price
 
 # Example parameters for calculations
-S = 100  # Underlying asset price
-K = 100  # Strike price
-T = 1    # Time to maturity in years
-r = 0.05  # Risk-free interest rate
-sigma = 0.2  # Volatility
+
+T = 0.25   # Time to maturity in years
+r = 0.1  # Risk-free interest rate
+sigma = 0.4  # Volatility
+K = 10.  # Strike price
+S = 4 * K  # Underlying asset price
 
 # Calculate Greeks for a call option
 delta_c = delta_call(S, K, T, r, sigma)
