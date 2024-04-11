@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="calculate">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>370</y>
+     <x>270</x>
+     <y>330</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>S0</string>
+    <string>choose a method from the drop-down</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="strike">
@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>K</string>
+    <string>and press &quot;select Choice&quot;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="time">
@@ -62,7 +62,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>T</string>
+    <string>before filling in the parameters</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="rf">
@@ -75,10 +75,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>r</string>
+    <string>lastly, press &quot;Calculate!&quot;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="time_steps">
+  <widget class="QLineEdit" name="wildcard1">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -88,10 +88,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>N</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLineEdit" name="up_factor">
+  <widget class="QLineEdit" name="wildcard2">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -101,7 +101,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>u</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLineEdit" name="opt_type">
@@ -114,7 +114,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>call/put</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLineEdit" name="output">
@@ -127,20 +127,45 @@
     </rect>
    </property>
    <property name="text">
-    <string>output</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QComboBox" name="choice">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>70</y>
-     <width>131</width>
-     <height>16</height>
+     <x>50</x>
+     <y>60</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Binomial Tree</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Monte Carlo</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Crank-Nicolson</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="choose">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>60</y>
+     <width>75</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Bionomial Tree</string>
+    <string>Select Choice</string>
    </property>
   </widget>
  </widget>
