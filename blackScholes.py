@@ -19,10 +19,15 @@ S_max = max(4 * K, S0 * 2)
 
 
 
+def calculate_ftcs(S0, K, T, r, sigma):
 
+    # potentially preset
+    N = 2000        # number of time steps 
+    M = 200         # number of space grids
 
+    # ensure S0 is well within the range
+    S_max = max(4 * K, S0 * 2)
 
-def calculate_ftcs(S0, K, T, r, sigma, N, M, S_max):
     dt = T / N
     s = np.linspace(0, S_max, M+1)  # stock price range
     C = np.clip(s - K, 0, None)      # initial condition
@@ -36,7 +41,12 @@ def calculate_ftcs(S0, K, T, r, sigma, N, M, S_max):
     s_idx = np.searchsorted(s, S0)  # Find the index closest to S0
     return C[s_idx]  # Return the option price at S0
 
-def calculate_crank_nicolson(S0, K, T, r, sigma, N, M, S_max):
+def calculate_crank_nicolson(S0, K, T, r, sigma):
+
+    N = 2000
+    M = 200        
+    S_max = max(4 * K, S0 * 2)
+
     dt = T / N
     s = np.linspace(0, S_max, M+1)
     C = np.clip(s - K, 0, None)
