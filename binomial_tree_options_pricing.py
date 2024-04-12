@@ -15,6 +15,21 @@ opttype = Option.PUT # Option Type 'C' or 'P'
 
 
 def binomial_tree(K: int, T: int, S0: int, r: float, N: int, u: float, d: float, opttype) -> float | str: 
+
+    """
+
+    Args:
+        S0 (float): Initial stock price.
+        K (float): Strike price of the option.
+        T (float): Time to maturity of the option (in years).
+        r (float): Risk-free interest rate (annualized).
+        N (int): time steps
+        u (float): up-factor
+        d = 1/u (float): ensure recombining tree
+
+    Returns:
+        float: Estimated price of the call option.
+    """
     
     dt = T / N
     q = (math.exp(r * dt) - d) / (u - d)
@@ -49,5 +64,5 @@ def binomial_tree(K: int, T: int, S0: int, r: float, N: int, u: float, d: float,
 
     return C[0]
 
-res = binomial_tree(K,T,S0,r,N,u,d, opttype)
-print(f'Option Price: ${res:.2f}')
+# res = binomial_tree(K,T,S0,r,N,u,d, opttype)
+# print(f'Option Price: ${res:.2f}')

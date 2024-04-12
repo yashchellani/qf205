@@ -1,6 +1,14 @@
 import numpy as np
 from math import exp, sqrt
 
+# Example usage
+S0 = 100  # Initial stock price
+K = 100   # Strike price
+T = 1     # Time to maturity (years)
+r = 0.06  # Risk-free interest rate
+sigma = 0.2  # Volatility
+num_simulations = 100  # Increase for better accuracy
+
 def generate_stock_paths(S0, mu, sigma, T, dt, num_simulations):
     """
     Generates multiple stock price paths using Geometric Brownian Motion.
@@ -54,13 +62,7 @@ def monte_carlo_option_price(S0, K, T, r, sigma, num_simulations):
 
     return option_price
 
-# Example usage
-S0 = 100  # Initial stock price
-K = 100   # Strike price
-T = 1     # Time to maturity (years)
-r = 0.06  # Risk-free interest rate
-sigma = 0.2  # Volatility
-num_simulations = 100  # Increase for better accuracy
+
 
 call_price = monte_carlo_option_price(S0, K, T, r, sigma, num_simulations)
 print("Estimated price of the European call option:", call_price)
