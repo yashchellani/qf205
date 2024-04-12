@@ -46,48 +46,49 @@ class Main(QMainWindow, Ui_MainWindow):
             self.wildcard2.hide()  # Hide second wildcard if not needed
         
 
-    
-
     def calculate_out(self):
-        try:
-            S0 = float(self.S0.text())
-            rf = float(self.rf.text())
-            strike = float(self.strike.text())
-            time = float(self.time.text())
-            method = self.choice.currentText()
-
-            # Define a dictionary to act as a switch-case
-            method_function = {
-                "Binomial Tree": lambda: binomial_tree(
-                    K=strike, T=time, S0=S0, r=rf, 
-                    N=int(self.wildcard1.text()), 
-                    u=1 + float(self.wildcard2.text()), 
-                    d=1 / (1 + float(self.wildcard2.text())), 
-                    opttype=self.opt_type.text().upper()
-                ),
-                "Monte Carlo": lambda: monte_carlo_option_price(
-                    S0=S0, K=strike, T=time, r=rf, 
-                    sigma=float(self.wildcard1.text()), 
-                    num_simulations=int(self.wildcard2.text()), 
-                    opt_type=self.opt_type.text().upper()
-                ),
-                "Crank-Nicolson": lambda: calculate_crank_nicolson(
-                    S0, strike, time, rf, float(self.wildcard1.text())
-                ),
-                "FTCS": lambda: calculate_ftcs(
-                    S0, strike, time, rf, float(self.wildcard1.text())
-                ),
-                "Black-Scholes": lambda: calculate_exact_black_scholes(
-                    S0, strike, time, rf, float(self.wildcard1.text())
-                )
-            }
-
-            # Execute the appropriate function based on the user's choice
-            result = method_function[method]() if method in method_function else None
-            if result is not None:
-                self.output.setText(str(round(result, 2)))
-            else:
-                self.output.setText("Selected method is not implemented.")
+        try: 
+            S0 = float(self.S0.text()) 
+            rf = float(self.rf.text()) 
+            strike = float(self.strike.text()) 
+            time = float(self.time.text()) 
+            method = self.choice.currentText() 
+ 
+            if self.opt_type.text().upper() == "CALL":  
+                opt_type = Option.CALL 
+            elif self.opt_type.text().upper() == "PUT":  
+                opt_type = Option.PUT 
+ 
+            # Define a dictionary to act as a switch-case 
+            method_function = { 
+                "Binomial Tree": lambda: binomial_tree( 
+                    K=strike, T=time, S0=S0, r=rf,  
+                    N=int(self.wildcard1.text()),  
+                    u=1 + float(self.wildcard2.text()),  
+                    d=1 / (1 + float(self.wildcard2.text())),  
+                    opttype=opt_type 
+                ), 
+                "Monte Carlo": lambda: monte_carlo_option_price( 
+                    S0=S0, K=strike, T=time, r=rf,  
+                    sigma=float(self.wildcard1.text()),  
+                    num_simulations=int(self.wildcard2.text()),  
+                    opttype=opt_type 
+                ), 
+                "Crank-Nicolson": lambda: calculate_crank_nicolson( 
+                    S0, strike, time, rf, float(self.wildcard1.text()) 
+                ), 
+                "FTCS": lambda: calculate_ftcs( 
+                    S0, strike, time, rf, float(self.wildcard1.text()) 
+                ), 
+                "Black-Scholes": lambda: calculate_exact_black_scholes( 
+                    S0, strike, time, rf, float(self.wildcard1.text()) 
+                ) 
+            } 
+ 
+            # Execute the appropriate function based on the user's choice 
+            result = method_function[method]()  
+            logger.info('result: ' + str(result)) 
+            self.output.setText(str(round(result, 4)))
 
         except Exception as e:
             logger.error(f"Error calculating option price: {e}")

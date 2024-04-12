@@ -73,6 +73,7 @@ def calculate_exact_black_scholes(S0, K, T, r, sigma):
     return max(C, 0)
 
 # Display results
-print("FTCS Option Price at S0:", calculate_ftcs(S0, K, T, r, sigma, N, M, S_max))
-print("Crank-Nicolson Option Price at S0:", calculate_crank_nicolson(S0, K, T, r, sigma, N, M, S_max))
-print("Exact Black-Scholes Option Price at S0:", calculate_exact_black_scholes(S0, K, T, r, sigma))
+if __name__ == '__main__':
+    print("FTCS Option Price at S0:", calculate_ftcs(S0, K, T, r, sigma))
+    print("Crank-Nicolson Option Price at S0:", calculate_crank_nicolson(S0, K, T, r, sigma))
+    print("Exact Black-Scholes Option Price at S0:", calculate_exact_black_scholes(S0, K, T, r, sigma))

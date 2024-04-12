@@ -1,5 +1,6 @@
 import numpy as np
 from math import exp, sqrt
+from option_types import Option
 
 # Example usage
 S0 = 100  # Initial stock price
@@ -35,7 +36,7 @@ def generate_stock_paths(S0, mu, sigma, T, dt, num_simulations):
 
     return paths
 
-def monte_carlo_option_price(S0, K, T, r, sigma, num_simulations):
+def monte_carlo_option_price(S0, K, T, r, sigma, num_simulations, opttype):
     """
     Prices a European call option using Monte Carlo simulation.
 
@@ -55,14 +56,18 @@ def monte_carlo_option_price(S0, K, T, r, sigma, num_simulations):
     paths = generate_stock_paths(S0, r, sigma, T, dt, num_simulations)
 
     # Payoffs at maturity
-    payoffs = np.maximum(paths[:, -1] - K, 0) 
+    if opttype == Option.CALL:
+        payoffs = np.maximum(paths[:, -1] - K, 0) 
+
+    elif opttype == Option.PUT:
+        payoffs = np.maximum(K - paths[:, -1], 0)
 
     # Discounting back to present value and averaging
     option_price = exp(-r * T) * payoffs.mean()  
 
     return option_price
 
-
-
-call_price = monte_carlo_option_price(S0, K, T, r, sigma, num_simulations)
-print("Estimated price of the European call option:", call_price)
+if __name__ == '__main__':
+    opttype = Option.CALL
+    call_price = monte_carlo_option_price(S0, K, T, r, sigma, num_simulations, opttype)
+    print("Estimated price of the European call option:", call_price)
