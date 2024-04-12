@@ -6,7 +6,6 @@ import logging
 from option_types import Option
 from binomial_tree_options_pricing import binomial_tree
 from monte_carlo_options_pricing import monte_carlo_option_price
-
 from blackScholes import calculate_ftcs,calculate_crank_nicolson,calculate_exact_black_scholes
 
 qtCreatorFile = "design.ui"
