@@ -10,10 +10,14 @@ T = 0.25        # expiry time
 r = 0.1         # no-risk interest rate
 sigma = 0.4     # volatility of underlying asset
 
-# ensure S0 is well within the range
-S_max = max(4 * K, S0 * 2)
+# potentially preset
 N = 2000        # number of time steps 
 M = 200         # number of space grids
+
+# ensure S0 is well within the range
+S_max = max(4 * K, S0 * 2)
+
+
 
 
 
